@@ -1,13 +1,12 @@
+let userChoice = prompt('Choose from rock paper scissors.', '');
+
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3) + 1;
     if (random === 1) {
-        console.log('Rock');
+        return 'Rock';
     } else if (random === 2) {
-        console.log('Paper');
+        return 'Paper';
     } else {
-        console.log('Scissors');
+        return 'Scissors';
     }
-    console.log(random);
 }
-
-getComputerChoice();
