@@ -7,12 +7,17 @@ let scoreComputer = 0;
 
 function getComputerChoice() {
     let random = Math.floor(Math.random() * 3) + 1;
-    if (random === 1) {
-        return 'Rock';
-    } else if (random === 2) {
-        return 'Paper';
-    } else {
-        return 'Scissors';
+
+    switch (random) {
+        case 1:
+            return 'Rock';
+            break;
+        case 2:
+            return 'Paper';
+            break;
+        case 3:
+            return 'Scissors';
+            break;
     }
 }
 
