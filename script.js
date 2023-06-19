@@ -2,6 +2,33 @@
 let scoreUser = 0;
 let scoreComputer = 0;
 
+let buttons = document.querySelectorAll('button');
+let container = document.querySelector('.container');
+
+buttons.forEach((btn) => {
+    btn.addEventListener('click', function game(e) {
+        const play = playRound(e.target.textContent, getComputerChoice());
+        let textResult = play.textContent;
+
+        if (textResult.includes('You win')) {
+            scoreUser++;
+        } else if (textResult.includes('You lose')) {
+            scoreComputer++;
+        }
+
+        let winner = document.createElement('div');
+        if (scoreUser === 5) {
+            winner.textContent = `You win! Player score: ${scoreUser} Computer score: ${scoreComputer}`;
+            container.appendChild(winner);
+            btn.removeEventListener('click', game);
+        } else if (scoreComputer === 5) {
+            winner.textContent = `You lose! Player score: ${scoreUser} Computer score: ${scoreComputer}`;
+            container.appendChild(winner);
+            btn.removeEventListener('click', game);
+        }
+    });
+});
+
 /* Function */
 /* It serves to make the computer play by causally choosing between rock paper scissors */
 
@@ -27,17 +54,21 @@ function playRound(playerSelection, computerSelection) {
     // I converted  the choice of player and computer into capital letters to compare them better.
     let player = playerSelection.toUpperCase();
     let computer = computerSelection.toUpperCase();
+    let result = document.createElement('div');
 
     if (player === computer) {
-        return `Draw! Player: "${playerSelection}" and Computer: "${computerSelection}"`;
+        result.textContent = `Draw! Player: "${playerSelection}" and Computer: "${computerSelection}"`;
+        return container.appendChild(result);
     } else if (
         (player === 'PAPER' && computer === 'SCISSORS') ||
         (player === 'SCISSORS' && computer === 'ROCK') ||
         (player === 'ROCK' && computer === 'PAPER')
     ) {
-        return `You lose! Computer: "${computerSelection}" beats Player: "${playerSelection}"`;
+        result.textContent = `You lose! Computer: "${computerSelection}" beats Player: "${playerSelection}"`;
+        return container.appendChild(result);
     } else {
-        return `You win! Computer: "${playerSelection}" beats Player: "${computerSelection}"`;
+        result.textContent = `You win! Player: "${playerSelection}" beats Computer: "${computerSelection}"`;
+        return container.appendChild(result);
     }
 }
 
@@ -71,5 +102,3 @@ function game() {
         );
     }
 }
-
-game();
