@@ -6,6 +6,7 @@ let buttons = document.querySelectorAll('button');
 let result = document.querySelector('.text-result');
 let player = document.querySelector('.score__player');
 let computer = document.querySelector('.score__computer');
+let reset = document.querySelector('.btn-reset');
 
 buttons.forEach((btn) => {
     btn.addEventListener('click', function game(e) {
@@ -20,13 +21,22 @@ buttons.forEach((btn) => {
         }
 
         if (scoreUser === 5) {
-            result.textContent = `You win! Player score: ${scoreUser} Computer score: ${scoreComputer}`;
-            btn.removeEventListener('click', game);
+            result.style.color = `#0f0`;
+            result.textContent = `You win!`;
         } else if (scoreComputer === 5) {
-            result.textContent = `You lose! Player score: ${scoreUser} Computer score: ${scoreComputer}`;
-            btn.removeEventListener('click', game);
+            result.style.color = `#f00`;
+            result.textContent = `You lose!`;
         }
     });
+});
+
+reset.addEventListener('click', function () {
+    result.style.color = '';
+    result.textContent = '';
+    scoreUser = 0;
+    scoreComputer = 0;
+    player.textContent = 0;
+    computer.textContent = 0;
 });
 
 /* Function */
