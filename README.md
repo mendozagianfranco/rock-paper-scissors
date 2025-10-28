@@ -1,4 +1,4 @@
-#Rock, Paper, Scissors
+# Rock, Paper, Scissors
 
 [Gioca ora](https://mendozagianfranco.github.io/rock-paper-scissors)
 
